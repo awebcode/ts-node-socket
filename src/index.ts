@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import router from "./routes/userRoutes.ts";
 import cookieParser from "cookie-parser";
 import { VisitorsCountModel } from "./models/visitorCountModel.ts";
+import productRouter from "./routes/productRoutes.ts";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -54,5 +55,6 @@ app.get("/", async (req: Request, res: Response) => {
 
   return res.send(`Returning user - Visit count: ${visitCookie}`);
 });
-app.use("/api/v1",router);
+app.use("/api/v1", router);
+app.use("/api/v1/product", productRouter);
 helper(app);
